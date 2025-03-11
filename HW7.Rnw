@@ -21,8 +21,26 @@
     \item Write a \texttt{pois.prob()} function that computes $P(X=x)$, 
     $P(X \neq x)$, $P(X<x)$, $P(X \leq x)$, $P(X > x)$, and $P(X \geq x).$ Enable the user to specify the rate parameter $\lambda$.
 <<size="scriptsize">>=
-pois.prob <- function(x, size, prob, type="<="){
+pois.prob <- function(x, lambda, type="<="){
   # Use dpois and ppois to conditionally return the correct probability
+  if (type == "="){
+    return(dpois(x, lambda))
+  } 
+  else if (type == "!="){
+    return(1 - dpois(x, lambda))
+  }
+  else if (type == "<"){
+    return(ppois(x - 1, lambda))
+  }
+  else if (type == "<="){
+    return(ppois(x, lambda))
+  }
+  else if (type == ">"){
+    return(1 - ppois(x, lambda))
+  }
+  else if (type == ">="){
+    return(1 - ppois(x - 1, lambda))
+  }
 }
 @
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,8 +51,21 @@ pois.prob <- function(x, size, prob, type="<="){
     for a beta distribution. Enable the user to specify the shape parameters
     $\alpha$ and $\beta$.
 <<size="scriptsize">>=
-beta.prob <- function(x, size, prob, type="<="){
+beta.prob <- function(x, alpha, beta, type="<="){
   # Use dbeta and pbeta to conditionally return the correct probability
+  
+  if (type == "="){
+    return(dbeta(x, alpha, beta))
+  }
+  else if (type == "!=") {
+    return (1 - dbeta(x, alpha, beta))
+  }
+  else if (type %in% c("<", "<=")){
+    return(pbeta(x, alpha, beta, lower.tail = TRUE))
+  }
+  else if (type %in% c(">", ">=")){
+    return(pbeta(x, alpha, beta, lower.tail = FALSE))
+  }
 }
 @
 \end{enumerate}
