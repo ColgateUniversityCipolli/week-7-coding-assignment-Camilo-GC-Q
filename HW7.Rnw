@@ -68,6 +68,9 @@ beta.prob <- function(x, alpha, beta, type="<="){
   }
 }
 @
+
+The \texttt{pois.prob()} and \texttt{beta.prob()} functions compute probabilities for the Poisson and Beta distributions, respectively. The \texttt{pois.prob()} function calculates the probabilities for the Poisson-distributed random variable with a given rate parameter ($\lambda$), using \texttt{dpois()} for exact probabilities and \texttt{ppois()} for cumulative probabilities. The \texttt{beta.prob()} function does the same for a Beta-distributed variable with shape parameteres ($\alpha$, $\beta$) using \texttt{dbeta()} for density values and \texttt{pbeta()} for cumulative probabilities.
+
 \end{enumerate}
 \bibliography{bibliography}
 \end{document}
